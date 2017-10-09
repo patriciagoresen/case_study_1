@@ -1,0 +1,29 @@
+---
+title: "Case Study 1 - US Breweries"
+author: "Brychan Manry"
+date: "October 9, 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(dplyr)
+library(kableExtra)
+library(knitr)
+```
+
+## Ingest Data
+```{r dataingest}
+beers <- read.csv("./rawdata/Beers.csv")
+breweries <- read.csv("./rawdata/Breweries.csv")
+
+```
+
+
+
+## Q1
+```{r q1}
+breweries %>% group_by(State) %>% summarise(n.breweries = n()) %>% kable()
+  
+
+```
