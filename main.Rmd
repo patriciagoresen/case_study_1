@@ -1,0 +1,27 @@
+---
+title: "Case Study 1 - US Breweries"
+author: "Brychan Manry"
+date: "October 9, 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Ingest Data
+```{r dataingest}
+beers <- read.csv("./rawdata/Beers.csv")
+breweries <- read.csv("./rawdata/Breweries.csv")
+
+
+```
+
+
+
+## Ingest Data
+```{r dataingest}
+beers <- read.csv("./rawdata/Beers.csv")
+breweries <- read.csv("./rawdata/Breweries.csv")
+
+```
