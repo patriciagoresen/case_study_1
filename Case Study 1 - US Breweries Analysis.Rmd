@@ -24,24 +24,25 @@ breweries <- read.csv("./rawdata/Breweries.csv") %>% rename(Brewery_Name = Name)
 ```
 
 
-## Q1
+## Q1: How many breweries are present in each state?
 ```{r q1}
-
+table(breweries$State)
 ```
 
 
-## Q2
+## Q2: Merge data and print first and last six observations
 ```{r q2}
 beers <- merge(beers, breweries, by.x = "Brewery_id", by.y = "Brew_ID")
-
+head(beers, n=6)
+tail(beers, n=6)
 ```
 
-## Q3
+## Q3: Report the number of NA's in each column
 ```{r q3}
-
+colSums(is.na(beers))
 ```
 
-## Q4
+## Q4: Compute the median alcohol content and international bitterness unit for each state. Plot a bar chart to compare
 ```{r q4, fig.width=11}
 # Median ABV and IBU by State Alpha
 ggplot(
@@ -51,12 +52,12 @@ ggplot(
     group_by(State, var) %>%
     summarise(med.val = median(val, na.rm = TRUE)),
   aes(x = State, fill = var, group = var)) +
-  geom_bar(aes(y = med.val), stat = "identity", position = "dodge") +
+  geom_bar(aes(y = med.val), stat = "identity",  position = "dodge") +
   facet_grid(var ~ ., scales = "free_y")
 
 ```
 
-## Q5
+## Q5: Which state has the maximum alcoholic beer? Which state has the most bitter beer?
 ```{r q5, fig.width=11}
 # Median ABV by state - ordered by median
 plot.df <- beers %>% group_by(State) %>% summarise(median.abv = median(ABV, na.rm = TRUE))
@@ -71,12 +72,12 @@ ggplot(plot.df, aes(State, y = median.ibu)) + geom_bar(stat = "identity")
 
 ```
 
-## Q6
+## Q6: Summary statistics for the ABV
 ```{r q6}
-
+summary(beers$ABV)
 ```
 
-## Q7
+## Q7: Is there an apparent relationship between the bitterness of the beer and its alcoholic content?
 ```{r q7}
 ggplot(beers, aes(IBU, ABV))+
   geom_point() +
